@@ -1,7 +1,12 @@
 import auxFunctions as af
 import cv2 as cv
 import time
-  
+
+
+#Colocar la direccion de la ipcam en el archivo rtsp-config.txt
+rtspFile = open('rtsp-config.txt')
+line = rtspFile.readline()
+
 # Objetos que detecta red
 labels = af.getListDetectableObjects()
   
@@ -10,10 +15,7 @@ model = 'frozen_inference_graph.pb'
 config = 'ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 model = cv.dnn.readNetFromTensorflow(model=model, config=config)
 
-# Leemos de la webcam
-# Si hay varias camaras conectadas ir subiendo el numero para cambiar de camara, a veces pasa del 0 al 2 ir probando hasta pegarle.
-# 0 es la primera de todas
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture(line)
 
 while cap.isOpened():
    ret, frame = cap.read()
@@ -69,5 +71,7 @@ while cap.isOpened():
    else:
        break
 # Liberamos los recursos
+
+rtspFile.close()
 cap.release()
 cv.destroyAllWindows()
