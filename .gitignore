@@ -1,2 +1,4 @@
 __pycache__/ 
 rtsp-config.txt
+bdconfig.ini
+config.json
