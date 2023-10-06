@@ -1,0 +1,19 @@
+[
+    {
+        "desc":"Laboratorio 0",
+        "rtsp-dir":"rtsp://urlIpCamera:puerto/L0"
+
+    },
+    {
+        "desc":"Laboratorio 1",
+        "rtsp-dir":"rtsp://urlIpCamera:puerto/L1"
+    },
+    {
+        "desc":"Laboratorio 2",
+        "rtsp-dir":"rtsp://urlIpCamera:puerto/L2"
+    },
+    {
+        "desc":"Laboratorio 3",
+        "rtsp-dir":"rtsp://urlIpCamera:puerto/L3"
+    }
+]
