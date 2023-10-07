@@ -10,13 +10,13 @@ webcamServers=json.load(configFile)
 configFile.close()
 # Variables 
 frameBuffer={}
-frameBufferProcesed={}
+frameBufferProcessed={}
 frameBufferLock=threading.Lock()
-frameBufferProcesedLock=threading.Lock()
+frameBufferProcessedLock=threading.Lock()
 
 #Connecion con las webcams
 reader.createIpCamerasReaders(webcamServers,frameBuffer,frameBufferLock)
-#Detector
-detector.createDetecor(frameBuffer,frameBufferProcesed,frameBufferLock,frameBufferProcesedLock)
+#Detector de objetos
+detector.createDetecor(frameBuffer,frameBufferProcessed,frameBufferLock,frameBufferProcessedLock)
 #Mostrar detecciones
-printer.createPrinter(frameBufferProcesed,frameBufferProcesedLock)
+printer.createPrinter(frameBufferProcessed,frameBufferProcessedLock)

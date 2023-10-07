@@ -1,12 +1,12 @@
 import cv2 as cv
 import threading
 
-def printImageThread(frameBufferProcesed,frameBufferProcesedLock):
-   
+def printImageThread(frameBufferProcessed,frameBufferProcessedLock):
+
    while True:
-    frameBufferProcesedLock.acquire()
-    auxFrameBuffer=frameBufferProcesed.copy()
-    frameBufferProcesedLock.release()
+    frameBufferProcessedLock.acquire()
+    auxFrameBuffer=frameBufferProcessed.copy()
+    frameBufferProcessedLock.release()
     if not(auxFrameBuffer=={}):
       for frame in auxFrameBuffer.keys():
         image=auxFrameBuffer.get(frame)
@@ -15,6 +15,6 @@ def printImageThread(frameBufferProcesed,frameBufferProcesedLock):
         cv.waitKey(1)
    cv.destroyAllWindows()
 
-def createPrinter(frameBufferProcesed,frameBufferProcesedLock):
-  thread=threading.Thread(target=printImageThread,args=(frameBufferProcesed,frameBufferProcesedLock))
+def createPrinter(frameBufferProcessed,frameBufferProcessedLock):
+  thread=threading.Thread(target=printImageThread,args=(frameBufferProcessed,frameBufferProcessedLock))
   thread.start()

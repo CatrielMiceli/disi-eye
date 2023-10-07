@@ -47,7 +47,7 @@ def getNumberPerLebelTerminalLog(listObjectDetected,time,desc):
          print(object+ ': ' + str(listObjectDetected.count(object))+" ",end="")
       print("")
 
-def detectObjectTread(frameBuffer,frameBufferProcesed,frameBufferLock,frameBufferProcesedLock):
+def detectObjectTread(frameBuffer,frameBufferProcessed,frameBufferLock,frameBufferProcessedLock):
    labels = getDNNabels91()
    connectInfluxDB = bd.influxdbConnectDISILABFromFile()
    model = 'frozen_inference_graph.pb'
@@ -81,19 +81,12 @@ def detectObjectTread(frameBuffer,frameBufferProcesed,frameBufferLock,frameBuffe
                textColor=(255,255,255)
                cv.putText(image, class_name +" "+ str(int(100*confidence)), (int(box_x), int(box_y - 5)), cv.FONT_HERSHEY_SIMPLEX, 1, textColor, 2)
                objectDetected.append(class_name)
-         #image = cv.resize(image,(400,250))
-         
-         frameBufferLock.acquire()
-         frameBufferProcesed[frame]=image
-         frameBufferLock.release()
+         frameBufferProcessedLock.acquire()
+         frameBufferProcessed[frame]=image
+         frameBufferProcessedLock.release()
          bd.getNumberPerLebelInfluxdb(connectInfluxDB,objectDetected ,frame)
-         #getNumberPerLebelTerminalLog(objectDetected,time.ctime(),frame)
       auxFrameBuffer={}
 
-         #cv.imshow(frame, image)
-         #cv.waitKey(1)
-         #getNumberPerLebelTerminalLog(objectDetected,time.ctime(),frame)
-
-def createDetecor(frameBuffer,frameBufferProcesed,frameBufferLock,frameBufferProcesedLock):
-   thread=threading.Thread(target=detectObjectTread,args=(frameBuffer,frameBufferProcesed,frameBufferLock,frameBufferProcesedLock))
+def createDetecor(frameBuffer,frameBufferProcessed,frameBufferLock,frameBufferProcessedLock):
+   thread=threading.Thread(target=detectObjectTread,args=(frameBuffer,frameBufferProcessed,frameBufferLock,frameBufferProcessedLock))
    thread.start()
