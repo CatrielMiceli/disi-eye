@@ -5,11 +5,16 @@ Sistema de visión computacional creado en la PPS para contribuir con la segurid
 * Python3
 * Librería de OPENCV
 * Cliente de influxDB
+### Instalación
+```
+pip install opencv-python
+pip install influxdb-client
+```
 ## Modo de uso
-### Camaras Web
-Se debe configurar la dirección de la cámara de la cual se desea obtener la transmisión en el archivo config.json en formato de lista de camaras con descripción ej: Laboratorio Verde y dirección de la RTSP de la camara web.
+### Cámaras Web
+Se debe configurar la dirección de la cámara de la cual se desea obtener la transmisión en el archivo **config.json** en formato de lista de cámaras con descripción ej: Laboratorio Verde y dirección de la RTSP de la cámara web.
 ### Base de datos
-Se deberá completar los parámetros del archivo bdconfig.ini, que son los datos de conexión a la base de datos de influxdb.
+Se deberá completar los parámetros del archivo **bdconfig.ini**, que son los datos de conexión a la base de datos de influxdb.
 ### Ejecutar
 Luego ejecutar el archivo disi-eye.py
 ## Autor
